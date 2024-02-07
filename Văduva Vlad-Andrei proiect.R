@@ -57,12 +57,14 @@ test1<-t.test(Rabbit$BPchange[Rabbit$Treatment=="Control"],Rabbit$BPchange[Rabbi
 if(test1$p.value<=0.95) print("Respingem ipoteza nula") else  print("Nu respingem ipoteza nula")
 
 correlation=cor(Rabbit$BPchange,Rabbit$Dose)
+#0.831961
 correlation
 
 model=lm(BPchange ~ Dose, data=Rabbit)
 #Mediana valorilor reziduu = -1.534 => Modelul tinde si sa subestimeze, dar si sa supraestimeze.
 #Residual standard error (Deviatia standard a reziduu-rilor) = 6.423
 model
+#Formula rezultata: y=2.03587+x*0.13992
 summary(model)
 #F-statistic: 130.4 on 1 and 58 DF,  p-value: < 2.2e-16 => respingem ipoteza nula =>exista o relatie intre cele 2 variabile
 
