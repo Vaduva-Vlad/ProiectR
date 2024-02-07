@@ -52,8 +52,8 @@ mean(mdl$BPchange)
 hist(Rabbit$Dose,breaks=15)
 
 #Test t pentru esantioane dependente
-#H0: BPchange este mai mare in prima faza
-#Ha: BPchange este mai mic in prima faza
+#H0: Media BPchange este mai mare in prima faza
+#Ha: Media BPchange este mai mic in prima faza
 test1<-t.test(Rabbit$BPchange[Rabbit$Treatment=="Control"],Rabbit$BPchange[Rabbit$Treatment=="MDL"],alternative="less",conf.level=0.05,paired=TRUE)
 if(test1$p.value<=0.95) print("Respingem ipoteza nula") else  print("Nu respingem ipoteza nula")
 
