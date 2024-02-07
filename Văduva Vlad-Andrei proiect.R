@@ -6,6 +6,7 @@ View(Rabbit)
 #A doua faza: Doza din ce in ce mai mare de fenilbiguanida + MDL (Medicament de reglare a tensiunii arteriale)
 #Se observa diferentele de tensiune arteriala in ambele faze
 
+#Impartim setul de date in 2 parti. Una va contine rezultatul primei faze, iar cealalta rezultatul celei de a doua faze.
 control<-subset(Rabbit,Treatment=="Control")
 mdl<-subset(Rabbit,Treatment=="MDL")
 control
@@ -78,4 +79,5 @@ v=c(10,25,75,115,150,190)
 new_dose=rep(v, times = 10)
 model=lm(BPchange ~ new_dose, data=Rabbit)
 model
+#Formula rezultata: y=-2.77908+x*0.14865
 summary(model)
