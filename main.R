@@ -25,9 +25,17 @@ line_graph<-function(rabbit,treatment){
 
 # Crestere constanta pana la penultima doza. La ultima doza incepe sa isi piarda efectul
 line_graph("R1","Control")
+line_graph("R2","Control")
+line_graph("R3","Control")
+line_graph("R4","Control")
+line_graph("R5","Control")
 
 # Crestere lenta la inceput, crestere brusca dupa ultima doza, datorata depasirii pragului medicamentului MDL
 line_graph("R1","MDL")
+line_graph("R2","MDL")
+line_graph("R3","MDL")
+line_graph("R4","MDL")
+line_graph("R5","MDL")
 
 
 median(control$BPchange)
@@ -40,6 +48,8 @@ quantile(mdl$BPchange,prob=c(.25,.5,.75))
 boxplot(mdl$BPchange)
 mean(mdl$BPchange)
 
+hist(Rabbit$Dose,breaks=15)
+
 #Test t pentru esantioane dependente
 #H0: BPchange este mai mare in prima faza
 #Ha: BPchange este mai mic in prima faza
@@ -50,10 +60,11 @@ correlation=cor(Rabbit$BPchange,Rabbit$Dose)
 correlation
 
 model=lm(BPchange ~ Dose, data=Rabbit)
-#Residual standard error = 6.423
 #Mediana valorilor reziduu = -1.534 => Modelul tinde si sa subestimeze, dar si sa supraestimeze.
+#Residual standard error (Deviatia standard a reziduu-rilor) = 6.423
 model
 summary(model)
+#F-statistic: 130.4 on 1 and 58 DF,  p-value: < 2.2e-16 => respingem ipoteza nula =>exista o relatie intre cele 2 variabile
 
 plot(BPchange ~ Dose, data=Rabbit)
 abline(model, col = "red")
@@ -65,3 +76,4 @@ v=c(10,25,75,115,150,190)
 new_dose=rep(v, times = 10)
 model=lm(BPchange ~ new_dose, data=Rabbit)
 model
+summary(model)
